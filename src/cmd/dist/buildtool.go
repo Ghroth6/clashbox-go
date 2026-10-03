@@ -243,6 +243,7 @@ func bootstrapBuildTools() {
 		pathf("%s/bin/go", goroot_bootstrap),
 		"install",
 		"-tags=math_big_pure_go compiler_bootstrap purego",
+		"-gcflags=bootstrap/cmd/cgo=-N -l", // Local bootstrap workaround for Go 1.24.5 SSA panic.
 	}
 	if vflag > 0 {
 		cmd = append(cmd, "-v")
